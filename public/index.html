@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Online | Plataforma de Aprendizaje</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts para tipografía profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionales profesionales */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+            --hover-shadow: 0 30px 60px -10px rgba(102,126,234,0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hero section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(102,126,234,0.9) 0%, rgba(118,75,162,0.9) 100%), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            margin-bottom: 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Sección de cursos */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* Cards profesionales */
+        .course-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            background: white;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .badge-basico {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .badge-intermedio {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: #333;
+        }
+
+        .badge-avanzado {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .course-image {
+            height: 180px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-image i {
+            font-size: 4rem;
+            color: white;
+            opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover .course-image i {
+            transform: scale(1.1);
+        }
+
+        .course-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .course-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .course-meta i {
+            width: 20px;
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .course-meta strong {
+            color: #4a5568;
+            margin-right: 5px;
+        }
+
+        .course-instructor {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-top: 1px solid #edf2f7;
+            border-bottom: 1px solid #edf2f7;
+            margin: 15px 0;
+        }
+
+        .instructor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .instructor-info {
+            flex: 1;
+        }
+
+        .instructor-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 2px;
+        }
+
+        .instructor-label {
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .course-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #28a745;
+            line-height: 1;
+        }
+
+        .course-price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #a0aec0;
+        }
+
+        .btn-enroll {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-enroll:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(102,126,234,0.4);
+            color: white;
+        }
+
+        .btn-enroll i {
+            font-size: 0.9rem;
+        }
+
+        /* Estadísticas */
+        .stats-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 0;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .course-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-enroll {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-graduation-cap"></i> CursosOnline
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="btnRegistroInactivo">
+                            <i class="fas fa-user-plus"></i> Nuevo Usuario
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Impulsa tu carrera profesional</h1>
+            <p class="hero-subtitle">Aprende con los mejores instructores y lleva tus habilidades al siguiente nivel con nuestros cursos especializados</p>
+        </div>
+    </section>
+
+    <!-- Cursos Section -->
+    <div class="container">
+        <h2 class="section-title">Nuestros Cursos</h2>
+        <div class="row g-4" id="cursos-container">
+            <!-- Las cards se cargarán dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Cursos Disponibles</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-number">10k+</div>
+                        <div class="stat-label">Estudiantes</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Instructores Expertos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i> Correo electrónico
+                            </label>
+                            <input type="email" class="form-control" id="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i> Contraseña
+                            </label>
+                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                        </div>
+                        <div id="mensajeLogin" class="alert d-none"></div>
+                        
+                        <button type="submit" class="btn btn-primary w-100" id="btnLogin">
+                            <span>Ingresar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
